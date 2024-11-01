@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PSGRKCW Hospital Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Ensures that only the homepage is visible when loaded */
+        .appointment-section, .prescription-section, .health-records-section {
+            display: none;
+        }
+    </style>
+</head>
+<body onload="showHome()">
+
+<!-- Header Section -->
+<header class="hero-section">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://i.ibb.co/yPqdhKD/logo.webp" alt="PSGRKCW Hospital Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showHome()">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#" onclick="showAppointment()">Appointments</a></li>
+            <li><a href="#" onclick="showHealthRecords()">Health Records</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-content">
+        <div class="text-content">
+            <h1>Revolutionizing Healthcare at PSGRKCW</h1>
+            <p>Your health is our priority! Explore our advanced solutions for online appointments, health records, and prescription management, all at your fingertips.</p>
+            <button class="appointment-btn" onclick="showAppointment()">Make an Appointment</button>
+        </div>
+        <div class="image-content">
+            <img src="https://i.ibb.co/PGMtFYb/doctor-photo.jpg" alt="Doctor Image">
+        </div>
+    </div>
+</header>
+
+<!-- Main Section -->
+<section id="home-section">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+        <div class="service-item">
+            <i class="fas fa-notes-medical"></i>
+            <h3>Online Appointments</h3>
+            <p>Book your appointments online anytime, anywhere with ease and convenience.</p>
+        </div>
+        <div class="service-item">
+            <i class="fas fa-prescription-bottle-alt"></i>
+            <h3>Prescription Management</h3>
+            <p>Get personalized prescriptions and track your medications effortlessly.</p>
+        </div>
+        <div class="service-item">
+            <i class="fas fa-folder-open"></i>
+            <h3>Health Record Maintenance</h3>
+            <p>Access your complete health records in one place and keep them updated.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Section -->
+<section class="appointment-section" id="appointment-section">
+    <h2>Make an Appointment</h2>
+    <form id="appointmentForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+       
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+       
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+       
+        <label for="date">Preferred Date:</label>
+        <input type="date" id="date" name="date" required>
+       
+        <label for="time">Preferred Time:</label>
+        <input type="time" id="time" name="time" required>
+       
+        <div class="button-container">
+            <button type="button" onclick="showHome()">Back</button>
+            <button type="submit">Next</button>
+        </div>
+    </form>
+</section>
+
+<!-- Prescription Section -->
+<section class="prescription-section" id="prescription-section">
+    <h2>Prescription Details</h2>
+    <form id="prescriptionForm">
+        <label for="prescription">Prescription:</label>
+        <textarea id="prescription" name="prescription" rows="4" required></textarea>
+       
+        <label for="notes">Doctor's Notes:</label>
+        <textarea id="notes" name="notes" rows="4"></textarea>
+       
+        <div class="button-container">
+            <button type="button" onclick="showAppointment()">Back</button>
+            <button type="submit">Finish</button>
+        </div>
+    </form>
+</section>
+
+<!-- Health Records Section -->
+<section class="health-records-section" id="health-records-section">
+    <h2>Health Records</h2>
+    <ul id="health-records-list"></ul>
+    <div class="details" id="record-details-content" style="display:none;"></div>
+    <div class="button-container">
+        <button type="button" class="next-btn" onclick="showHome()">Back to Homepage</button>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 PSGRKCW Hospital Management. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // When the page loads, show the homepage
+    function showHome() {
+        document.querySelector('.hero-section').style.display = 'flex';
+        document.querySelector('#home-section').style.display = 'block';
+        document.querySelector('.appointment-section').style.display = 'none';
+        document.querySelector('.prescription-section').style.display = 'none';
+        document.querySelector('.health-records-section').style.display = 'none';
+        document.querySelector('.details').style.display = 'none'; // Hide details initially
+    }
+
+    function showAppointment() {
+        document.querySelector('.hero-section').style.display = 'none';
+        document.querySelector('#home-section').style.display = 'none';
+        document.querySelector('.appointment-section').style.display = 'block';
+        document.querySelector('.prescription-section').style.display = 'none';
+        document.querySelector('.health-records-section').style.display = 'none';
+        document.getElementById('appointmentForm').reset(); // Reset form
+    }
+
+    function showPrescription() {
+        document.querySelector('.appointment-section').style.display = 'none';
+        document.querySelector('.prescription-section').style.display = 'block';
+    }
+
+    function showHealthRecords() {
+        document.querySelector('.hero-section').style.display = 'none';
+        document.querySelector('#home-section').style.display = 'none';
+        document.querySelector('.appointment-section').style.display = 'none';
+        document.querySelector('.prescription-section').style.display = 'none';
+        document.querySelector('.health-records-section').style.display = 'block';
+        displayHealthRecords();
+    }
+
+    // Store health records in an object keyed by name
+    let healthRecords = {};
+
+    // Event listeners for form submissions
+    document.getElementById('appointmentForm').onsubmit = function(event) {
+        event.preventDefault();
+        showPrescription();
+    };
+
+    document.getElementById('prescriptionForm').onsubmit = function(event) {
+        event.preventDefault();
+        // Get data from forms
+        const name = document.getElementById('name').value;
+        const prescription = document.getElementById('prescription').value;
+        const notes = document.getElementById('notes').value;
+
+        // Create or update the health record for the patient
+        if (!healthRecords[name]) {
+            healthRecords[name] = { appointments: [], prescriptions: [] };
+        }
+
+        // Add appointment to the health record
+        const appointment = {
+            date: document.getElementById('date').value,
+            time: document.getElementById('time').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value
+        };
+        healthRecords[name].appointments.push(appointment);
+
+        // Add prescription to the health record
+        healthRecords[name].prescriptions.push({ prescription, notes });
+
+        // Clear the forms
+        document.getElementById('appointmentForm').reset();
+        document.getElementById('prescriptionForm').reset();
+
+        // Display health records
+        showHealthRecords();
+    };
+
+    // Function to display health records
+    function displayHealthRecords() {
+        const healthRecordsList = document.getElementById('health-records-list');
+        healthRecordsList.innerHTML = '';
+
+        // Iterate over the health records and display names as clickable links
+        for (const name in healthRecords) {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<a href="#" onclick="showRecordDetails('${name}')">${name}</a>`;
+            healthRecordsList.appendChild(listItem);
+        }
+    }
+
+    // Function to show details of a selected health record
+    function showRecordDetails(name) {
+        const recordDetailsContent = document.getElementById('record-details-content');
+        recordDetailsContent.innerHTML = ''; // Clear previous details
+        recordDetailsContent.style.display = 'block';
+
+        // Fetch the details of the selected patient
+        const record = healthRecords[name];
+        if (record) {
+            const appointments = record.appointments.map(app => `<li>Date: ${app.date}, Time: ${app.time}, Email: ${app.email}, Phone: ${app.phone}</li>`).join('');
+            const prescriptions = record.prescriptions.map(pres => `<li>Prescription: ${pres.prescription}, Notes: ${pres.notes}</li>`).join('');
+
+            recordDetailsContent.innerHTML = `
+                <h3>Details for ${name}</h3>
+                <h4>Appointments:</h4>
+                <ul>${appointments}</ul>
+                <h4>Prescriptions:</h4>
+                <ul>${prescriptions}</ul>
+            `;
+        }
+    }
+</script>
+</body>
+</html>
